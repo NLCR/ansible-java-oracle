@@ -1,0 +1,13 @@
+---
+- name: 'get Oracle Java RPM: {{ oracle_java_rpm }}'
+  get_url:
+    url: '{{ oracle_java_url }}'
+    headers: 'Cookie:oraclelicense=accept-securebackup-cookie'
+    dest: '/tmp/{{ oracle_java_rpm }}'
+  tags: java
+
+- name: 'install Oracle Java RPM: {{ oracle_java_rpm }}'
+  yum:
+    name: '/tmp/{{ oracle_java_rpm }}'
+    state: present
+  tags: java
